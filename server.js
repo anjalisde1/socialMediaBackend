@@ -1,4 +1,3 @@
-// Backend: Node.js + Express.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -8,13 +7,13 @@ const jwt = require('jsonwebtoken');
 const app = express();
 app.use(express.json());
 const corsOptions = {
-    origin: 'http://localhost:3000', // Allow requests from your frontend URL
+    origin: 'http://localhost:3000', 
     methods: ['GET', 'POST'],
     credentials: true,
 };
 app.use(cors(corsOptions));
 
-// Connect to MongoDB
+// Db connection
 mongoose.connect('mongodb+srv://anjalipandey:eLF7Q171V9YsWWi2@cluster0.gclgr.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -84,7 +83,7 @@ app.put('/api/profile/:id', async (req, res) => {
       const updatedUser = await User.findByIdAndUpdate(
         req.params.id, 
         { name, email, profilePicture }, 
-        { new: true } // This ensures the updated user is returned
+        { new: true } 
       );
       
       if (!updatedUser) {
